@@ -8,7 +8,14 @@ const axios = require("axios")
 const api = {
   // TODO: Return promise for GitHub api response to get user data.
   // (Hint: Use axios to send a get request and return the promise created by calling axios.get())
-  getUser(username) {}
+  getUser(username) {
+    const url = `https://api.github.com/users/${username}`;
+    return axios.get(url)
+    .then(function(response){
+      console.log(response.data)
+    })
+    
+  }
 };
 
 module.exports = api;

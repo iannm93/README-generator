@@ -1,48 +1,53 @@
 
 // TODO: import fs, path and inquirer modules
+
 const inquirer = require("inquirer")
+const questions = [
+    {
+    type: "input",
+    
+    message: "What is your GitHub username?",
+    
+    name: "username"
+    },
+    {
+     type: "input",
+        
+     message: "What is the title of your project?",
+        
+    name: "title"
+    },
+    {
+    type: "input",
+        
+    message: "Describe your project",
+        
+    name: "description"
+    }]
+
 
 // TODO: import api and generateMarkdown modules from ./utils/
-inquirer.prompt([
-    {
-        type: "input",
+const api = require("./utils/api.js")
+const markdown = require("./utils/generateMarkdown.js")
 
-        message: "What is your GitHub username?",
 
-        name: "username"
-    },
-    {
-        type: "input",
+inquirer.prompt(questions)
 
-        message: "What is the title of your project?",
 
-        name: "title"
-    },
-    {
-        type: "input",
-
-        message: "Describe your project",
-
-        name: "description"
-    },
-
-]).then((answers) => {
+.then((answers) => {
+    
     console.log(answers.username)
-    const url = `https://api.github.com/users${answers.username}`
- })
+    return api.getUser(answers.username)
+    // return axios.get(url)
+    
+}).then(response => {
+    console.log(response.data)
+    
+})
 .catch(() => { })
 
-// TODO: import api and generateMarkdown modules from ./utils/
 
-// TODO: Add inquirer question objects to questions array. This should
-// include all the necessary questions for the user.
-// Example question:
-// {
-//   type: "input",
-//   name: "github",
-//   message: "What is your GitHub username?"
-// }
-// const questions = [];
+
 
 // TODO: Write function to synchronously write data in the
 // current working directory to file named for the fileName parameter.
