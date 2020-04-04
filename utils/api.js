@@ -1,5 +1,6 @@
 // TODO: import axios module
 const axios = require("axios")
+const fs = require("fs")
 
 // TODO: use dotenv module to get environmental variables if necessary
 
@@ -11,9 +12,13 @@ const api = {
   getUser(username) {
     const url = `https://api.github.com/users/${username}`;
     return axios.get(url)
-    .then(function(response){
-      console.log(response.data)
-    })
+    // .then((response) => {
+    //   console.log(response.data)
+      
+      // const avatar_url = response.data.avatar_url
+      // const login = response.data.login
+ 
+    // })
     
   }
 };
